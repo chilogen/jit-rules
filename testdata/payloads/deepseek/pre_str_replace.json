@@ -1,0 +1,14 @@
+{
+  "session_id": "dsh-sess-1",
+  "transcript_path": "",
+  "hook_event_name": "PreToolUse",
+  "cwd": "/work/proj",
+  "tool_name": "str_replace_editor",
+  "tool_input": {
+    "command": "str_replace",
+    "path": "docs/design.md",
+    "old_str": "a",
+    "new_str": "b"
+  },
+  "tool_use_id": "dsh-call-4"
+}

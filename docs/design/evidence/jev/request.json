@@ -1,0 +1,7 @@
+{"model":"jev-latest",
+ "state":{"kind":"tool","tool":"write","raw_tool":"Write","paths":["docs/design/README.md"],"content":"# 设计\n\n## 决策\n1. 规则不常驻。\n\n## 不做\n- A 不做\n- B 不做"},
+ "questions":{
+  "me:writing/design-doc":{"type":"noul","instructions":"The agent is writing or editing a design doc, proposal, or README-style explanatory document.","criteria":{"true":"The agent is writing or editing a design doc, proposal, or README-style explanatory document.","false":"Editing code comments, changelogs, or test fixtures."}},
+  "me:writing/design-doc-zh":{"type":"noul","instructions":"正在写或修改设计文档、方案、README 这类说明性文档"},
+  "team:git/commit-msg":{"type":"noul","instructions":"The agent is writing a git commit message."}
+ }}

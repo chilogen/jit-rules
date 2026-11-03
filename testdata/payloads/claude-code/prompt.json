@@ -1,0 +1,9 @@
+{
+  "session_id": "40002396-c1ff-4904-bcd2-d2592595627b",
+  "transcript_path": "/home/u/.claude/projects/p/s.jsonl",
+  "cwd": "/work/proj",
+  "prompt_id": "e156c0c1-c915-4c53-8be6-554c2984e41c",
+  "permission_mode": "acceptEdits",
+  "hook_event_name": "UserPromptSubmit",
+  "prompt": "Use the Write tool (not Bash) to create note.txt containing: hello world. Then use the Edit tool to change 'world' to 'there'."
+}

@@ -1,0 +1,7 @@
+{
+  "session_id": "dsh-sess-1",
+  "transcript_path": "",
+  "hook_event_name": "SessionStart",
+  "source": "startup",
+  "cwd": "/work/proj"
+}

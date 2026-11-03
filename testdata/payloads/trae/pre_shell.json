@@ -1,0 +1,14 @@
+{
+  "session_id": "trae-sess-1",
+  "cwd": "/work/proj",
+  "hook_event_name": "PreToolUse",
+  "workspace_roots": [
+    "/work/proj"
+  ],
+  "tool_use_id": "trae-call-1",
+  "tool_name": "RunCommand",
+  "llm_tool_name": "RunCommand",
+  "tool_input": {
+    "command": "git status"
+  }
+}

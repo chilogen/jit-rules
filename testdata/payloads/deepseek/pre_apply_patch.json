@@ -1,0 +1,11 @@
+{
+  "session_id": "dsh-sess-1",
+  "transcript_path": "",
+  "hook_event_name": "PreToolUse",
+  "cwd": "/work/proj",
+  "tool_name": "apply_patch",
+  "tool_input": {
+    "input": "*** Begin Patch\n*** Add File: docs/new.md\n+# 新文档\n*** End Patch"
+  },
+  "tool_use_id": "dsh-call-3"
+}

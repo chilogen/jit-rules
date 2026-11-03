@@ -1,0 +1,16 @@
+# 由 jitr 生成。记录哪些单元和包已经生效。不要手动修改。
+version: 1
+units:
+  basic/prompt-all:
+    hash: sha256:d600776e5be0651225600437709f3da50f941f8e91661d0e3aeda60c50e2995b
+    enabled_at: 2026-11-02T00:00:00Z
+    tests: {passed: 2, failed: 0, skipped: 0}
+  basic/txt-block:
+    hash: sha256:a803231fb614af8d1ae18a5933c08d9248a66edd8b5c237318d6b787fcdd5f4e
+    enabled_at: 2026-11-02T00:00:00Z
+    tests: {passed: 2, failed: 0, skipped: 0}
+  basic/txt-inject:
+    hash: sha256:3a7e501408e82bba7a7dcee1a578409af7fb251a9a0a8e6d7f8d8e8e8f556778
+    enabled_at: 2026-11-02T00:00:00Z
+    tests: {passed: 2, failed: 0, skipped: 0}
+packs: {}

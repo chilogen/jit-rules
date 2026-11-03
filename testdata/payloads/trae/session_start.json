@@ -1,0 +1,9 @@
+{
+  "session_id": "trae-sess-1",
+  "hook_event_name": "SessionStart",
+  "source": "startup",
+  "cwd": "/work/proj",
+  "workspace_roots": [
+    "/work/proj"
+  ]
+}

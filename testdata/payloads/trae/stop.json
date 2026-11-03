@@ -1,0 +1,11 @@
+{
+  "session_id": "trae-sess-1",
+  "cwd": "/work/proj",
+  "hook_event_name": "Stop",
+  "workspace_roots": [
+    "/work/proj"
+  ],
+  "stop_hook_active": false,
+  "loop_count": 0,
+  "last_assistant_message": "Done."
+}

@@ -1,0 +1,10 @@
+{
+  "session_id": "01a197e9-d3b0-7f41-b4a0-cdd12ab9976b",
+  "turn_id": "01a197e9-ddbb-7ce1-bb8a-920d0d9d440e",
+  "transcript_path": "/home/u/.codex/sessions/s.jsonl",
+  "cwd": "/work/proj",
+  "hook_event_name": "UserPromptSubmit",
+  "model": "gpt-6-astra",
+  "permission_mode": "bypassPermissions",
+  "prompt": "Use apply_patch to create note.txt containing: hello world. Then run: cat note.txt"
+}

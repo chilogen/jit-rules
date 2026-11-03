@@ -1,0 +1,8 @@
+【用户要新增或修改规则时，按 jitr 的流程来做】  core/author
+何时检查：用户发消息时
+判断：由模型回答"Is the user asking to add, change, remove, or review a rule, habit, or preference that the agent should follow in future work?"，概率 ≥ 0.3 才算命中（排除：The user only asks for a one-off change to the current task.）
+做什么：在 AI 继续之前，把规则原文放进它的上下文
+规则原文：
+  如果用户是在要求新增、修改或删除一条以后都要遵守的规则：不要把它写进 CLAUDE.md、AGENTS.md 或记忆文件；先运行 `jitr guide`，然后严格按其中的流程把它做成一个判断单元。如果不是，忽略这条提示。
+冲突域：core.authoring（同一时刻只生效排位最高的一条）
+示例：2 条应触发，1 条不应触发

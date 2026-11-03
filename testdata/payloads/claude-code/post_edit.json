@@ -1,0 +1,42 @@
+{
+  "session_id": "40002396-c1ff-4904-bcd2-d2592595627b",
+  "transcript_path": "/home/u/.claude/projects/p/s.jsonl",
+  "cwd": "/work/proj",
+  "prompt_id": "e156c0c1-c915-4c53-8be6-554c2984e41c",
+  "permission_mode": "acceptEdits",
+  "effort": {
+    "level": "medium"
+  },
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Edit",
+  "tool_input": {
+    "file_path": "/work/proj/note.txt",
+    "old_string": "WORLD",
+    "new_string": "THERE",
+    "replace_all": false
+  },
+  "tool_response": {
+    "filePath": "/work/proj/note.txt",
+    "oldString": "WORLD",
+    "newString": "THERE",
+    "originalFile": "HELLO WORLD",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 1,
+        "newStart": 1,
+        "newLines": 1,
+        "lines": [
+          "-HELLO WORLD",
+          "\\ No newline at end of file",
+          "+HELLO THERE",
+          "\\ No newline at end of file"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "tool_use_id": "toolu_01HdDS5YuaA89jH7wSyz8d67",
+  "duration_ms": 2
+}

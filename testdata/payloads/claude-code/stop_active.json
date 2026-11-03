@@ -1,0 +1,11 @@
+{
+  "session_id": "6e9ce516-3188-413a-a0ec-5eb268dd0321",
+  "transcript_path": "/home/u/.claude/projects/-work-proj/6e9ce516.jsonl",
+  "cwd": "/work/proj",
+  "prompt_id": "1285dc46-52a2-4b64-8e4d-845708709bf7",
+  "permission_mode": "default",
+  "hook_event_name": "Stop",
+  "stop_hook_active": true,
+  "last_assistant_message": "已追加到 docs/log/2026-11-04.md。",
+  "background_tasks": []
+}

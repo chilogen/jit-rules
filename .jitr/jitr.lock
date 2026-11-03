@@ -1,0 +1,25 @@
+# 由 jitr 生成。记录哪些单元和包已经生效。不要手动修改。
+version: 1
+units:
+    jit-rules/go.file-size:
+        hash: sha256:f46f0d2c24d6b976b07cc6925f1a8f8249b866fc3951be60654234af43b606b0
+        enabled_at: 2026-11-03T17:56:06.814137952Z
+        tests:
+            passed: 1
+            failed: 0
+            skipped: 2
+    jit-rules/go.function-size:
+        hash: sha256:1864eb466964088b9e3002bf7b6079fe090cb3d3b53a26bf3963eda4bc40afb1
+        enabled_at: 2026-11-03T17:56:06.820879892Z
+        tests:
+            passed: 1
+            failed: 0
+            skipped: 2
+    jit-rules/test.spec-literal:
+        hash: sha256:0f1cfc195b19b538a92b2b6f294ba3ab01d3f4ac16579e72ec59400f04da3ac3
+        enabled_at: 2026-11-03T16:45:27.822151704Z
+        tests:
+            passed: 1
+            failed: 0
+            skipped: 3
+packs: {}

@@ -1,0 +1,11 @@
+{
+  "session_id": "01a1a274-c923-7793-a4bf-1675f9faafe6",
+  "turn_id": "01a1a274-ce0d-71c1-85f4-f4885aff9787",
+  "transcript_path": "/home/u/.codex/sessions/s.jsonl",
+  "cwd": "/work/proj",
+  "hook_event_name": "Stop",
+  "model": "gpt-6.1-sol",
+  "permission_mode": "bypassPermissions",
+  "stop_hook_active": false,
+  "last_assistant_message": "Created `b.txt` containing `y`."
+}

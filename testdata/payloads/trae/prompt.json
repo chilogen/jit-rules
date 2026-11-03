@@ -1,0 +1,9 @@
+{
+  "session_id": "trae-sess-1",
+  "cwd": "/work/proj",
+  "hook_event_name": "UserPromptSubmit",
+  "workspace_roots": [
+    "/work/proj"
+  ],
+  "prompt": "帮我写设计文档"
+}

@@ -1,0 +1,12 @@
+{
+  "session_id": "dsh-sess-1",
+  "transcript_path": "",
+  "hook_event_name": "PreToolUse",
+  "cwd": "/work/proj",
+  "tool_name": "write",
+  "tool_input": {
+    "file_path": "docs/design.md",
+    "content": "## 决策"
+  },
+  "tool_use_id": "dsh-call-2"
+}

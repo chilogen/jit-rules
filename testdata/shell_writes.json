@@ -1,0 +1,593 @@
+{
+  "cwd": "/work/proj",
+  "note": "合成例子（codex-printf-append-new-file 的命令取自 2026-11-02 实测的 Codex 调用）。existing 是测试时视为已存在的文件（相对 cwd）。",
+  "cases": [
+    {
+      "name": "plain-read",
+      "command": "cat note.txt",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "git-commit",
+      "command": "git commit -m \"更新设计\"",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "echo",
+      "command": "echo hello > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hello\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "echo-n",
+      "command": "echo -n hello > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hello",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "echo-e",
+      "command": "echo -e 'a\\nb' > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "a\nb\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "echo-no-e-keeps-backslash",
+      "command": "echo 'a\\nb' > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "a\\nb\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "codex-printf-append-new-file",
+      "command": "printf '%s\\n' 'Buy milk and eggs tomorrow.' >> notes.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "notes.md"
+        ],
+        "content": "Buy milk and eggs tomorrow.\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "printf-append-existing-file",
+      "command": "printf '%s\\n' 'Buy milk and eggs tomorrow.' >> notes.md",
+      "existing": [
+        "notes.md"
+      ],
+      "expect": {
+        "tool": "shell",
+        "effect": "edit",
+        "paths": [
+          "notes.md"
+        ],
+        "content": "Buy milk and eggs tomorrow.\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "printf-no-percent",
+      "command": "printf 'line1\\nline2\\n' > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "line1\nline2\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "printf-other-format",
+      "command": "printf '%d\\n' 3 > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "heredoc-quoted",
+      "command": "cat > docs/plan.md <<'EOF'\n# 计划\n\n第一步\nEOF",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "docs/plan.md"
+        ],
+        "content": "# 计划\n\n第一步\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "heredoc-unquoted-dollar",
+      "command": "cat > a.md <<EOF\nhome is $HOME\nEOF",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "heredoc-unquoted-plain",
+      "command": "cat <<EOF > a.md\nplain\nEOF",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "plain\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "heredoc-strip-tabs",
+      "command": "cat <<-'EOF' > a.md\n\tindented\n\tEOF",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "indented\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "heredoc-space-before-delim",
+      "command": "cat > a.md << \"END\"\nx\nEND",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "x\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "compound-mkdir-then-write",
+      "command": "mkdir -p docs && cat > docs/a.md <<'EOF'\nx\nEOF",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "docs/a.md"
+        ],
+        "content": "x\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "tee-heredoc",
+      "command": "tee a.md <<'EOF'\nhi\nEOF",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "tee-append-existing",
+      "command": "tee -a log.md <<'EOF'\nhi\nEOF",
+      "existing": [
+        "log.md"
+      ],
+      "expect": {
+        "tool": "shell",
+        "effect": "edit",
+        "paths": [
+          "log.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "pipe-into-tee",
+      "command": "echo hi | tee a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "dynamic-target",
+      "command": "echo hi > \"$OUT\"",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "dev-null",
+      "command": "ls > /dev/null",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "stderr-only",
+      "command": "make 2> err.log",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "stdout-and-dup",
+      "command": "ls > out.txt 2>&1",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "out.txt"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "two-targets",
+      "command": "echo a > a.md; echo b > b.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "edit",
+        "paths": [
+          "a.md",
+          "b.md"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "same-file-twice",
+      "command": "echo a > a.md; echo b >> a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "edit",
+        "paths": [
+          "a.md"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "subshell-gives-up",
+      "command": "(echo a > a.md)",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "command-substitution-arg",
+      "command": "echo \"$(date)\" > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "glob-arg",
+      "command": "cat *.txt > all.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "all.md"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "unterminated-quote-gives-up",
+      "command": "echo 'abc > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "heredoc-missing-end-gives-up",
+      "command": "cat > a.md <<'EOF'\nx",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "no-space-target",
+      "command": "echo hi >a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "no-space-both",
+      "command": "echo hi>a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "fd1-prefix",
+      "command": "echo 1>a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "here-string",
+      "command": "cat <<< 'hello' > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hello\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "clobber",
+      "command": "echo x >| a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "x\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "both-streams",
+      "command": "make &> build.log",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "build.log"
+        ],
+        "content": "",
+        "content_unknown": true
+      }
+    },
+    {
+      "name": "line-continuation",
+      "command": "echo a \\\n b > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "a b\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "comment-ignored",
+      "command": "echo hi > a.md # note > b.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "python-heredoc-no-target",
+      "command": "python3 - <<'EOF'\nopen('x.md','w').write('a')\nEOF",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "absolute-target-in-root",
+      "command": "echo hi > /work/proj/docs/a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "docs/a.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "absolute-target-outside-root",
+      "command": "echo hi > /tmp/a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "/tmp/a.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "tilde-target",
+      "command": "echo hi > ~/notes.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "",
+        "paths": [],
+        "content": "",
+        "content_unknown": false
+      }
+    },
+    {
+      "name": "cd-not-tracked",
+      "command": "cd docs && echo hi > a.md",
+      "existing": [],
+      "expect": {
+        "tool": "shell",
+        "effect": "write",
+        "paths": [
+          "a.md"
+        ],
+        "content": "hi\n",
+        "content_unknown": false
+      }
+    }
+  ]
+}

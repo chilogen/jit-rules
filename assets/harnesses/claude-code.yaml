@@ -1,0 +1,52 @@
+name: claude-code
+title: Claude Code
+detect:
+  order: 100
+  fallback: true
+events:
+  UserPromptSubmit: prompt
+  PreToolUse: tool
+  PostToolUse: tool_result
+  SessionStart: session_start
+  Stop: stop
+compact_sources: [compact, clear]
+tools:
+  Bash: shell
+  Write: write
+  Edit: edit
+  MultiEdit: edit
+  NotebookEdit: edit
+  Read: read
+  Glob: search
+  Grep: search
+  WebFetch: web
+  WebSearch: web
+  Task: agent
+  Agent: agent
+patch_tools: []
+dedupe:
+  prompt: [prompt_id]
+  tool: [tool_use_id]
+supports:
+  system_message: true
+install:
+  kind: hooks-json
+  targets:
+    user: {paths: ["~/.claude/settings.json"], mode: first}
+    project: {paths: [".claude/settings.json"], mode: first}
+  file_defaults: {}
+  handler_extra: {}
+  timeout_seconds: 10
+  command:
+    unix: "'{bin}' hook --harness {name}"
+    windows: "\"{bin}\" hook --harness {name}"
+  notes: []
+isolate:
+  kind: claude-settings
+  program: claude
+  subcommands: []
+  args: ["--setting-sources", "", "--disable-slash-commands"]
+  subcommand_args: {}
+  settings: {autoMemoryEnabled: false}
+  options: {}
+  notes: []

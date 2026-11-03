@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "check 2>/dev/null && echo ok",
+            "timeout": 1.5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "other-hook",
+            "sequence": 12345678901234567890
+          }
+        ]
+      }
+    ]
+  },
+  "enabled": true
+}

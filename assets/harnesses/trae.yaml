@@ -1,0 +1,52 @@
+name: trae
+title: TRAE
+detect:
+  order: 20
+  any_fields: [llm_tool_name, workspace_roots]
+events:
+  UserPromptSubmit: prompt
+  PreToolUse: tool
+  PostToolUse: tool_result
+  SessionStart: session_start
+  Stop: stop
+compact_sources: []
+tools:
+  RunCommand: shell
+  Write: write
+  Edit: edit
+  Read: read
+  Glob: search
+  Grep: search
+  LS: search
+  WebSearch: web
+  WebFetch: web
+  Skill: skill
+patch_tools: []
+dedupe:
+  prompt: []
+  tool: [tool_use_id]
+supports:
+  system_message: false
+install:
+  kind: hooks-json
+  targets:
+    user: {paths: ["~/.trae/hooks.json", "~/.trae-cn/hooks.json"], mode: existing}
+    project: {paths: [".trae/hooks.json"], mode: first}
+  file_defaults: {version: 1}
+  handler_extra: {}
+  timeout_seconds: 10
+  command:
+    unix: "'{bin}' hook --harness {name}"
+    windows: "& \"{bin}\" hook --harness {name}"
+  notes:
+    - "TRAE 也会执行写在 Claude Code 配置里的钩子；两边都装没有问题，jitr 会去重。"
+isolate:
+  kind: manual
+  program: ""
+  subcommands: []
+  args: []
+  subcommand_args: {}
+  settings: {}
+  options: {}
+  notes:
+    - "TRAE 是 IDE，无法从命令行启动一个隔离的会话。评测前，请在 TRAE 的设置中手动关闭规则、记忆和技能，评测结束后再打开。"

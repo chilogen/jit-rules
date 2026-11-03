@@ -1,0 +1,14 @@
+---
+id: forbidden
+title: forbidden id
+trigger:
+  events: [prompt]
+judge:
+  question: Should this trigger?
+examples:
+  - expect: hit
+    event: {kind: prompt}
+  - expect: miss
+    event: {kind: prompt}
+---
+body

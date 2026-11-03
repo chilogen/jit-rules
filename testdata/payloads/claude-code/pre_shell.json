@@ -1,0 +1,17 @@
+{
+  "session_id": "40002396-c1ff-4904-bcd2-d2592595627b",
+  "transcript_path": "/home/u/.claude/projects/p/s.jsonl",
+  "cwd": "/work/proj",
+  "prompt_id": "e156c0c1-c915-4c53-8be6-554c2984e41c",
+  "permission_mode": "acceptEdits",
+  "effort": {
+    "level": "medium"
+  },
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "git commit -m \"更新设计\"",
+    "description": "commit"
+  },
+  "tool_use_id": "toolu_01BashExample000000000000"
+}

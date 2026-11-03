@@ -1,0 +1,9 @@
+{
+  "session_id": "01a197e9-d3b0-7f41-b4a0-cdd12ab9976b",
+  "transcript_path": "/home/u/.codex/sessions/s.jsonl",
+  "cwd": "/work/proj",
+  "hook_event_name": "SessionStart",
+  "model": "gpt-6-astra",
+  "permission_mode": "bypassPermissions",
+  "source": "startup"
+}

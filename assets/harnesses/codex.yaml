@@ -1,0 +1,51 @@
+name: codex
+title: Codex CLI
+detect:
+  order: 10
+  any_fields: [model, turn_id]
+events:
+  UserPromptSubmit: prompt
+  PreToolUse: tool
+  PostToolUse: tool_result
+  SessionStart: session_start
+  Stop: stop
+compact_sources: [compact, clear]
+tools:
+  Bash: shell
+  apply_patch: edit
+patch_tools: [apply_patch]
+dedupe:
+  prompt: [turn_id]
+  tool: [tool_use_id]
+supports:
+  system_message: true
+install:
+  kind: hooks-json
+  targets:
+    user: {paths: ["~/.codex/hooks.json"], mode: first}
+    project: {paths: [".codex/hooks.json"], mode: first}
+  file_defaults: {}
+  handler_extra:
+    UserPromptSubmit: {additionalContextLimit: 5000}
+    PreToolUse: {additionalContextLimit: 5000}
+  timeout_seconds: 10
+  command:
+    unix: "'{bin}' hook --harness {name}"
+    windows: "\"{bin}\" hook --harness {name}"
+  notes:
+    - "必须在 Codex 里运行 /hooks，信任 jitr 的 5 个钩子；不信任的钩子会被静默跳过。"
+    - "project 作用域还要求该项目的 .codex/ 目录本身是受信任的。"
+isolate:
+  kind: codex-config
+  program: codex
+  subcommands: [exec]
+  args: ["--dangerously-bypass-hook-trust", "-c", "project_doc_max_bytes=0", "-c", "memories.use_memories=false", "-c", "memories.generate_memories=false", "-c", "skills.include_instructions=false", "-c", "skills.bundled.enabled=false"]
+  subcommand_args:
+    exec: ["--ignore-user-config"]
+  settings: {}
+  options:
+    home: "{env:CODEX_HOME:~/.codex}"
+    home_env: CODEX_HOME
+    home_keep: [auth.json]
+  notes:
+    - "隔离时使用临时的 CODEX_HOME，只从真实主目录复制 auth.json；用户的 hooks、config、skills 都不会加载。"

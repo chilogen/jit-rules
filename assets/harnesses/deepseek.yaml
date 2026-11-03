@@ -1,0 +1,55 @@
+name: deepseek
+title: DeepSeek Harness
+detect:
+  order: 30
+  field_equals: {transcript_path: ""}
+events:
+  UserPromptSubmit: prompt
+  PreToolUse: tool
+  PostToolUse: tool_result
+  SessionStart: session_start
+compact_sources: []
+tools:
+  bash: shell
+  pwsh: shell
+  write: write
+  edit: edit
+  str_replace_editor: edit
+  apply_patch: edit
+  read: read
+  read_image: read
+  glob: search
+  grep: search
+patch_tools: [apply_patch]
+dedupe:
+  prompt: []
+  tool: [tool_use_id]
+supports:
+  system_message: false
+install:
+  kind: dsh-patch
+  targets:
+    user: {paths: ["{config}/harness/deepseek/hooks.json"], mode: first}
+  file_defaults: {}
+  handler_extra: {}
+  timeout_seconds: 10
+  command:
+    unix: "'{bin}' hook --harness {name}"
+    windows: "\"{bin}\" hook --harness {name}"
+  options:
+    patch_file: "{env:DSH_HOME:~/.dsh}/cordis.patch.yml"
+    entry_id: jit-rules-hooks
+    plugin: "@deepseek-ai/dsh-hooks-claude-code"
+  notes:
+    - "DeepSeek Harness 在启动时读取钩子配置，需要重启后才生效。"
+isolate:
+  kind: dsh-patch
+  program: dsh
+  subcommands: []
+  args: []
+  subcommand_args: {}
+  settings: {}
+  options:
+    disable_entries: [agent-instructions, skill, skill-filesystem, tool-skill]
+    disable_entry_prefixes: [memory]
+  notes: []

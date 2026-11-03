@@ -1,0 +1,15 @@
+{
+  "session_id": "trae-sess-1",
+  "cwd": "/work/proj",
+  "hook_event_name": "PreToolUse",
+  "workspace_roots": [
+    "/work/proj"
+  ],
+  "tool_use_id": "trae-call-2",
+  "tool_name": "Write",
+  "llm_tool_name": "Write",
+  "tool_input": {
+    "file_path": "/work/proj/docs/design.md",
+    "content": "## 决策\n1. 规则不常驻"
+  }
+}

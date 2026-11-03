@@ -1,0 +1,23 @@
+# settings 的默认值。profile.yaml 的 settings 在此基础上深度合并。
+judge:
+  backend: jev
+  timeout_ms: 3500
+  max_field_chars: 2000
+  send_content: true
+backends:
+  jev:
+    model: jev-latest
+    base_url: https://api.typesafe.ai
+    api_key_env: TYPESAFE_API_KEY
+    threshold: 0.3
+  openai:
+    model: gpt-6-luna
+    base_url: https://api.openai.com/v1
+    api_key_env: OPENAI_API_KEY
+    threshold: 0.5
+redeliver_bytes: 80000
+deadline_ms: 5000
+max_inject_chars: 4000
+journal:
+  keep_days: 30
+  store_content: true

@@ -1,0 +1,291 @@
+{
+  "claude-code": {
+    "prompt": {
+      "harness": "claude-code",
+      "kind": "prompt",
+      "prompt": "Use the Write tool (not Bash) to create note.txt containing: hello world. Then use the Edit tool to change 'world' to 'there'.",
+      "dedupe_key": "prompt:e156c0c1-c915-4c53-8be6-554c2984e41c"
+    },
+    "session_start": {
+      "harness": "claude-code",
+      "kind": "session_start"
+    },
+    "session_compact": {
+      "harness": "claude-code",
+      "kind": "compact"
+    },
+    "pre_write": {
+      "harness": "claude-code",
+      "kind": "tool",
+      "tool": "write",
+      "raw_tool": "Write",
+      "paths": [
+        "note.txt"
+      ],
+      "content": "hello world",
+      "dedupe_key": "tool:toolu_012nvTrazjxtFVKpSgwyNPrQ"
+    },
+    "pre_edit": {
+      "harness": "claude-code",
+      "kind": "tool",
+      "tool": "edit",
+      "raw_tool": "Edit",
+      "paths": [
+        "note.txt"
+      ],
+      "content": "THERE",
+      "dedupe_key": "tool:toolu_01HdDS5YuaA89jH7wSyz8d67"
+    },
+    "post_edit": {
+      "harness": "claude-code",
+      "kind": "tool_result",
+      "tool": "edit",
+      "raw_tool": "Edit"
+    },
+    "pre_shell": {
+      "harness": "claude-code",
+      "kind": "tool",
+      "tool": "shell",
+      "raw_tool": "Bash",
+      "paths": [],
+      "shell": "git commit -m \"更新设计\"",
+      "dedupe_key": "tool:toolu_01BashExample000000000000",
+      "effect": ""
+    },
+    "pre_mcp": {
+      "harness": "claude-code",
+      "kind": "tool",
+      "tool": "mcp/fs/write_file",
+      "raw_tool": "mcp__fs__write_file",
+      "paths": [
+        "docs/a.md"
+      ],
+      "content": "x",
+      "dedupe_key": "tool:toolu_01McpExample0000000000000"
+    },
+    "pre_shell_heredoc": {
+      "harness": "claude-code",
+      "kind": "tool",
+      "tool": "shell",
+      "raw_tool": "Bash",
+      "effect": "write",
+      "paths": [
+        "docs/plan.md"
+      ],
+      "shell": "mkdir -p docs && cat > docs/plan.md <<'EOF'\n计划\n\n第一步：写测试\nEOF",
+      "content": "计划\n\n第一步：写测试\n",
+      "content_unknown": false,
+      "dedupe_key": "tool:toolu_01HeredocExample00000000"
+    },
+    "stop": {
+      "harness": "claude-code",
+      "kind": "stop",
+      "content": "I created `a.txt` containing `x`.",
+      "stop_active": false,
+      "dedupe_key": "stop:sha1:9f0e8ebebae5ae6ed50d487fb38952610f613120"
+    },
+    "stop_active": {
+      "harness": "claude-code",
+      "kind": "stop",
+      "content": "已追加到 docs/log/2026-11-04.md。",
+      "stop_active": true,
+      "dedupe_key": "stop:sha1:1cd9e731ca63fcfd7da19d96f1b1184d0c27bdcb"
+    }
+  },
+  "codex": {
+    "prompt": {
+      "harness": "codex",
+      "kind": "prompt",
+      "prompt": "Use apply_patch to create note.txt containing: hello world. Then run: cat note.txt",
+      "dedupe_key": "prompt:01a197e9-ddbb-7ce1-bb8a-920d0d9d440e"
+    },
+    "session_start": {
+      "harness": "codex",
+      "kind": "session_start"
+    },
+    "session_compact": {
+      "harness": "codex",
+      "kind": "compact"
+    },
+    "pre_apply_patch": {
+      "harness": "codex",
+      "kind": "tool",
+      "tool": "write",
+      "raw_tool": "apply_patch",
+      "paths": [
+        "note.txt"
+      ],
+      "content": "hello world.",
+      "dedupe_key": "tool:exec-a25c548e-3653-4cd3-a9e7-12d5c187c7f8"
+    },
+    "pre_apply_patch_mixed": {
+      "harness": "codex",
+      "kind": "tool",
+      "tool": "edit",
+      "raw_tool": "apply_patch",
+      "paths": [
+        "docs/design.md",
+        "old.txt",
+        "a.md",
+        "b.md"
+      ],
+      "content": "## 决策\n1. 规则不常驻\nmoved",
+      "dedupe_key": "tool:exec-mixed-patch-0001"
+    },
+    "pre_shell": {
+      "harness": "codex",
+      "kind": "tool",
+      "tool": "shell",
+      "raw_tool": "Bash",
+      "paths": [],
+      "shell": "cat note.txt",
+      "dedupe_key": "tool:exec-6fd14073-92cc-4c5c-876a-899e1a1b0ee1",
+      "effect": ""
+    },
+    "post_shell": {
+      "harness": "codex",
+      "kind": "tool_result",
+      "tool": "shell",
+      "raw_tool": "Bash"
+    },
+    "pre_shell_write": {
+      "harness": "codex",
+      "kind": "tool",
+      "tool": "shell",
+      "raw_tool": "Bash",
+      "effect": "write",
+      "paths": [
+        "notes.md"
+      ],
+      "shell": "printf '%s\\n' 'Buy milk and eggs tomorrow.' >> notes.md",
+      "content": "Buy milk and eggs tomorrow.\n",
+      "content_unknown": false,
+      "dedupe_key": "tool:exec-6aee8b2e-02da-46e0-b3f9-4786512b8a1c"
+    },
+    "stop": {
+      "harness": "codex",
+      "kind": "stop",
+      "content": "Created `b.txt` containing `y`.",
+      "stop_active": false,
+      "dedupe_key": "stop:sha1:c259f13ca4324f08ac014a2ab3c03de4b530f058"
+    }
+  },
+  "trae": {
+    "prompt": {
+      "harness": "trae",
+      "kind": "prompt",
+      "prompt": "帮我写设计文档",
+      "dedupe_key": "prompt:sha1:8aca53b2fb826ac4143309ba0a68d8209a9c3cdc"
+    },
+    "session_start": {
+      "harness": "trae",
+      "kind": "session_start"
+    },
+    "pre_shell": {
+      "harness": "trae",
+      "kind": "tool",
+      "tool": "shell",
+      "raw_tool": "RunCommand",
+      "paths": [],
+      "shell": "git status",
+      "dedupe_key": "tool:trae-call-1",
+      "effect": ""
+    },
+    "pre_write": {
+      "harness": "trae",
+      "kind": "tool",
+      "tool": "write",
+      "raw_tool": "Write",
+      "paths": [
+        "docs/design.md"
+      ],
+      "content": "## 决策\n1. 规则不常驻",
+      "dedupe_key": "tool:trae-call-2"
+    },
+    "pre_write_dup": {
+      "harness": "trae",
+      "kind": "tool",
+      "tool": "write",
+      "raw_tool": "Write",
+      "paths": [
+        "docs/design.md"
+      ],
+      "content": "## 决策\n1. 规则不常驻",
+      "dedupe_key": "tool:trae-call-2"
+    },
+    "post_shell": {
+      "harness": "trae",
+      "kind": "tool_result",
+      "tool": "shell",
+      "raw_tool": "RunCommand"
+    },
+    "stop": {
+      "harness": "trae",
+      "kind": "stop",
+      "content": "Done.",
+      "stop_active": false,
+      "dedupe_key": "stop:sha1:4839f0896c325cc263c45902c52f97f3a0026fcf"
+    }
+  },
+  "deepseek": {
+    "prompt": {
+      "harness": "deepseek",
+      "kind": "prompt",
+      "prompt": "写一个设计文档",
+      "dedupe_key": "prompt:sha1:fa20e21fc938efc26dac28f945d074c6afe5f448"
+    },
+    "session_start": {
+      "harness": "deepseek",
+      "kind": "session_start"
+    },
+    "pre_shell": {
+      "harness": "deepseek",
+      "kind": "tool",
+      "tool": "shell",
+      "raw_tool": "bash",
+      "paths": [],
+      "shell": "ls",
+      "dedupe_key": "tool:dsh-call-1",
+      "effect": ""
+    },
+    "pre_write": {
+      "harness": "deepseek",
+      "kind": "tool",
+      "tool": "write",
+      "raw_tool": "write",
+      "paths": [
+        "docs/design.md"
+      ],
+      "content": "## 决策",
+      "dedupe_key": "tool:dsh-call-2"
+    },
+    "pre_apply_patch": {
+      "harness": "deepseek",
+      "kind": "tool",
+      "tool": "write",
+      "raw_tool": "apply_patch",
+      "paths": [
+        "docs/new.md"
+      ],
+      "content": "# 新文档",
+      "dedupe_key": "tool:dsh-call-3"
+    },
+    "pre_str_replace": {
+      "harness": "deepseek",
+      "kind": "tool",
+      "tool": "edit",
+      "raw_tool": "str_replace_editor",
+      "paths": [
+        "docs/design.md"
+      ],
+      "content": "b",
+      "dedupe_key": "tool:dsh-call-4"
+    },
+    "post_shell": {
+      "harness": "deepseek",
+      "kind": "tool_result",
+      "tool": "shell",
+      "raw_tool": "bash"
+    }
+  }
+}

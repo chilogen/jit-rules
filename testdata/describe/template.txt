@@ -1,0 +1,8 @@
+【commit message 用中文写】  me/unit-template
+何时检查：AI 调用工具之前
+条件：工具是 shell，且命令匹配 /git\s+commit\b.*\s-[a-z]*m\s*["']?[A-Za-z]/
+做什么：拦下这次工具调用，把规则原文作为理由交给 AI，让它按规则改正后再试
+规则原文：
+  commit message 用中文写，第一行不超过 50 个字。
+冲突域：git.commit-language（同一时刻只生效排位最高的一条）
+示例：1 条应触发，2 条不应触发

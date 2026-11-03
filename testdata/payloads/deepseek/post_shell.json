@@ -1,0 +1,12 @@
+{
+  "session_id": "dsh-sess-1",
+  "transcript_path": "",
+  "hook_event_name": "PostToolUse",
+  "cwd": "/work/proj",
+  "tool_name": "bash",
+  "tool_input": {
+    "command": "ls"
+  },
+  "tool_use_id": "dsh-call-1",
+  "tool_response": "a.md\nb.md\n"
+}

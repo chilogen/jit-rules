@@ -1,0 +1,8 @@
+# 由 jitr 生成。记录哪些单元和包已经生效。不要手动修改。
+version: 1
+units:
+  smoke/md.first-line-h1:
+    hash: sha256:041c54ad28468d1cbbd7a146686f0d1db38b4ee1154aa10bfda5018901496ca3
+    enabled_at: 2026-11-02T00:00:00Z
+    tests: {passed: 5, failed: 0, skipped: 0}
+packs: {}

@@ -1,0 +1,14 @@
+{
+  "session_id": "01a197e9-d3b0-7f41-b4a0-cdd12ab9976b",
+  "turn_id": "01a197e9-ddbb-7ce1-bb8a-920d0d9d440e",
+  "transcript_path": "/home/u/.codex/sessions/s.jsonl",
+  "cwd": "/work/proj",
+  "hook_event_name": "PreToolUse",
+  "model": "gpt-6-astra",
+  "permission_mode": "bypassPermissions",
+  "tool_name": "apply_patch",
+  "tool_input": {
+    "command": "*** Begin Patch\n*** Update File: /work/proj/docs/design.md\n@@\n-old line\n+## 决策\n+1. 规则不常驻\n*** Delete File: /work/proj/old.txt\n*** Update File: /work/proj/a.md\n*** Move to: /work/proj/b.md\n@@\n+moved\n*** End Patch"
+  },
+  "tool_use_id": "exec-mixed-patch-0001"
+}
